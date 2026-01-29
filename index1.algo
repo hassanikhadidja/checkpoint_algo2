@@ -1,4 +1,4 @@
-ALGORITHM checkpoint_algorithm_2
+ALGORITHM checkpoint_algorithm
 VAR 
     sum : INTEGER := 0                 // somme des éléments uniques
     i, j, na, nb : INTEGER             // indices et tailles des tableaux

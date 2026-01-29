@@ -1,0 +1,43 @@
+ALGORITHM Produit_en_points
+VAR
+    n, dim, i, j : INTEGER
+    ps : REAL
+    v1, v2 : ARRAY_OF REAL[dim]   // tableaux représentant les vecteurs
+BEGIN
+    // Lecture du nombre de couples de vecteurs
+    Write("Enter number of vector pairs:")
+    Read(n)
+
+     // Lecture de la dimension des vecteurs
+    Write("Enter dimension of vectors:")
+    Read(dim)
+
+    // Boucle externe : traite chaque couple de vecteurs
+    FOR i FROM 1 TO n DO
+
+        // Lecture du premier vecteur v1
+        Write("Enter vector v1:")
+        FOR j FROM 0 TO dim-1 DO
+            Read(v1[j])           // remplissage du tableau v1
+        END_FOR
+
+        // Lecture du deuxième vecteur v2
+        Write("Enter vector v2:")
+        FOR j FROM 0 TO dim-1 DO
+            Read(v2[j])           // remplissage du tableau v2
+        END_FOR
+
+        // Appel de la procédure dot_product
+        // ps est passé par référence (VAR)
+        dot_product(v1, v2, dim, ps)
+
+        // Test d’orthogonalité :
+        // Deux vecteurs sont orthogonaux si leur produit scalaire = 0
+        IF (ps = 0) THEN
+            Write("Vectors are orthogonal")
+        ELSE
+            Write("Vectors are not orthogonal")
+        END_IF
+
+    END_FOR
+END 

@@ -1,0 +1,17 @@
+// Procédure qui calcule le produit scalaire de deux vecteurs
+// v1, v2, dim : passage par valeur
+// ps : passage par référence (VAR)
+PROCEDURE dot_product (v1 : ARRAY_OF REAL, v2 : ARRAY_OF REAL, dim : INTEGER, VAR ps : REAL)
+VAR
+    i : INTEGER
+BEGIN
+    ps := 0   // initialisation du produit scalaire
+
+    // boucle pour parcourir les composantes des vecteurs
+    FOR i FROM 0 TO dim-1 DO
+        ps := ps + v1[i] * v2[i]   // formule du produit scalaire
+    END_FOR
+END
+
+
+
