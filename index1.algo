@@ -1,0 +1,87 @@
+ALGORITHM checkpoint_algorithm_2
+VAR 
+    sum : INTEGER := 0                 // somme des éléments uniques
+    i, j, na, nb : INTEGER             // indices et tailles des tableaux
+    find, already : BOOLEAN           // indicateurs de recherche
+    TAB1 : ARRAY_OF INTEGER[na]       // premier tableau
+    TAB2 : ARRAY_OF INTEGER[nb]       // deuxième tableau
+
+BEGIN
+    // Lecture des tailles des tableaux
+    Write("Write the length of TAB1 :")
+    Read(na)
+
+    Write("Write the length of TAB2 :")
+    Read(nb)
+
+    // Remplissage de TAB1
+    FOR i FROM 0 TO na-1 STEP 1 DO
+        Write("Enter element of the first array")
+        Read(TAB1[i])
+    END_FOR
+
+    // Remplissage de TAB2
+    FOR i FROM 0 TO nb-1 STEP 1 DO
+        Write("Enter element of the second array")
+        Read(TAB2[i])
+    END_FOR
+
+
+    // Parcours de TAB1 (STEP 2)
+    FOR i FROM 0 TO na-1 STEP 2 DO
+        find = false
+        already = false   // vérifier si l'élément a déjà été traité dans TAB1
+
+        // Vérifier si TAB1[i] existe dans TAB2
+        FOR j FROM 0 TO nb-1 STEP 2 DO
+            IF (TAB1[i] = TAB2[j]) THEN
+                find = true
+            END_IF
+        END_FOR
+
+        // Vérifier si TAB1[i] est déjà apparu auparavant dans TAB1
+        FOR j FROM 0 TO i-1 STEP 2 DO
+            IF (TAB1[i] = TAB1[j]) THEN
+                already = true
+            END_IF
+        END_FOR
+
+        // On ajoute l'élément une seule fois, même s'il se répète dans TAB1
+        IF (find = false AND already = false) THEN
+            sum := sum + TAB1[i]
+        END_IF
+    END_FOR
+
+
+    // Parcours de TAB2 (STEP 3)
+    FOR i FROM 0 TO nb-1 STEP 3 DO
+        find = false
+        already = false   // vérifier si l'élément a déjà été traité dans TAB2
+
+        // Vérifier si TAB2[i] existe dans TAB1
+        FOR j FROM 0 TO na-1 STEP 3 DO
+            IF (TAB2[i] = TAB1[j]) THEN
+                find = true
+            END_IF
+        END_FOR
+
+        // Vérifier si TAB2[i] est déjà apparu auparavant dans TAB2
+        FOR j FROM 0 TO i-1 STEP 3 DO
+            IF (TAB2[i] = TAB2[j]) THEN
+                already = true
+            END_IF
+        END_FOR
+
+        // On ajoute l'élément une seule fois, même s'il se répète dans TAB2
+        IF (find = false AND already = false) THEN
+            sum := sum + TAB2[i]
+        END_IF
+    END_FOR
+
+
+    // Affichage du résultat final
+    Write("The sum of unique elements is: ", sum)
+
+END
+
+
